@@ -1,6 +1,6 @@
 use std::collections::HashSet;
 
-use substreams::{log, pb::substreams::Clock};
+use substreams::pb::substreams::Clock;
 use substreams_antelope::pb::TransactionTrace;
 use substreams_entity_change::tables::Tables;
 
