@@ -1,6 +1,6 @@
 use std::collections::HashSet;
 
-use substreams::{log, pb::substreams::Clock};
+use substreams::pb::substreams::Clock;
 use substreams_antelope::pb::TransactionTrace;
 use substreams_entity_change::tables::Tables;
 
@@ -39,12 +39,10 @@ pub fn insert_transaction(params: &str, tables: &mut Tables, clock: &Clock, tran
     let collapsed_db_ops = collapse_db_ops(transaction);
 
     // TABLE::DbOps
-    let mut db_op_index = 0;
-    for db_op in collapsed_db_ops.iter() {
-        if insert_db_op(params, tables, clock, db_op, transaction, db_op_index, &action_keys) {
+    for db_op_ext in collapsed_db_ops.iter() {
+        if insert_db_op(params, tables, clock, &db_op_ext.db_op, transaction, db_op_ext.index, &action_keys) {
             is_matched = true;
         }
-        db_op_index += 1;
     }
 
     // TABLE::Transaction
