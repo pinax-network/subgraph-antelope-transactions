@@ -16,11 +16,16 @@ pub fn insert_action(params: &str, tables: &mut Tables, clock: &Clock, trace: &A
     let action = trace.action.as_ref().expect("action missing");
     let receiver = &trace.receiver;
 
+    // receipt
+    let receipt = trace.receipt.as_ref().expect("receipt missing");
+    let global_sequence = receipt.global_sequence;
+
     // action data
     let account = action.account.as_str();
     let name = action.name.as_str();
     let json_data = action.json_data.as_str();
     let raw_data = Hex::encode(action.raw_data.to_vec());
+    let console = trace.console.as_str();
     let is_notify = account.ne(receiver);
     let is_input = trace.creator_action_ordinal == 0;
 
@@ -35,11 +40,17 @@ pub fn insert_action(params: &str, tables: &mut Tables, clock: &Clock, trace: &A
             // pointers
             .set("transaction", tx_hash)
             .set("block", clock.id.as_str())
+
             // trace
             .set_bigint("index", &index.to_string())
             .set("receiver", receiver)
             .set("isNotify", is_notify)
             .set("isInput", is_input)
+            .set("console", console)
+
+            // receipt
+            .set_bigint("globalSequence", &global_sequence.to_string())
+
             // action
             .set("account", account)
             .set("name", name)
