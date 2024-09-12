@@ -6,8 +6,10 @@ type Action @entity {
   rawData:                  String!
   receiver:                 String!
   index:                    BigInt!
+  globalSequence:           BigInt!
   isNotify:                 Boolean!
   isInput:                  Boolean!
+  console:                  String!
 
   # derived fields
   block:                    Block!

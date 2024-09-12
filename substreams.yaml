@@ -1,9 +1,9 @@
 specVersion: v0.1.0
 package:
   name: antelope_transactions
-  version: v0.4.0
+  version: v0.4.2
   url: https://github.com/pinax-network/subgraph-antelope-transactions
-  image: ./chains/wax/logo.jpg
+  image: ./subgraphs/wax/logo.jpg
 
 imports:
   entity_change: ./imports/substreams-sink-entity-changes-v1.3.3.spkg
