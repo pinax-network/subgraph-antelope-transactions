@@ -1,0 +1,10 @@
+{
+    "name": "Kylin Transactions",
+    "displayName": "Kylin Transactions",
+    "description": "Kylin Transactions, Decoded Actions & Database Operations",
+    "image": "ipfs://QmSTLMEqEsbd8SjLKTvFkLZJue5Ba6GagFYLM1zmVgVFGD",
+    "subgraphImage": "https://api.thegraph.com/ipfs/api/v0/cat?arg=QmSTLMEqEsbd8SjLKTvFkLZJue5Ba6GagFYLM1zmVgVFGD",
+    "codeRepository": "https://github.com/pinax-network/subgraph-antelope-transactions",
+    "website": "https://pinax.network",
+    "categories": null
+}

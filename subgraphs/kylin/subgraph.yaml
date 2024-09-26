@@ -1,0 +1,19 @@
+specVersion: 1.2.0
+description: Kylin Transactions, Decoded Actions & Database Operations
+repository: https://github.com/pinax-network/antelope-transactions-subgraph
+schema:
+  file: ../../schema.graphql
+indexerHints:
+  prune: 2419200 # 14 days (2 blocks per second)
+dataSources:
+  - kind: substreams
+    name: kylin_transactions
+    network: kylin
+    source:
+      startBlock: 373006623
+      package:
+        moduleName: graph_out
+        file: ../../antelope-transactions-v0.5.0.spkg
+    mapping:
+      kind: substreams/graph-entities
+      apiVersion: 0.0.5
