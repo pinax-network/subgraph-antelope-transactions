@@ -1,7 +1,7 @@
 specVersion: v0.1.0
 package:
   name: antelope_transactions
-  version: v0.4.2
+  version: v0.5.0
   url: https://github.com/pinax-network/subgraph-antelope-transactions
   image: ./subgraphs/wax/logo.jpg
 
@@ -33,8 +33,6 @@ modules:
         params: true
     output:
       type: proto:sf.substreams.sink.entity.v1.EntityChanges
-
-network: wax
 
 params:
   graph_out: "*"

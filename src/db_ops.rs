@@ -13,6 +13,7 @@ pub struct DbOpExt {
 use crate::{
     index::{collect_db_op_keys, is_match},
     keys::{action_key, db_ops_key, db_ops_table_key},
+    order_by::insert_order_by,
 };
 
 pub fn operation_to_string(operation: i32) -> String {
@@ -37,7 +38,7 @@ pub fn collapse_db_ops(transaction: &TransactionTrace) -> Vec<DbOpExt> {
 
         // first db ops, no need to inherit from previous db ops
         if !collapsed_db_ops.contains_key(&table_key) {
-            collapsed_db_ops.insert(table_key, DbOpExt{db_op: db_op.clone(), index});
+            collapsed_db_ops.insert(table_key, DbOpExt { db_op: db_op.clone(), index });
         // inherit from previous db ops
         // new_data and new_data_json are updated
         } else {
@@ -74,7 +75,7 @@ pub fn insert_db_op(params: &str, tables: &mut Tables, clock: &Clock, db_op: &Db
     let action_key = action_key(tx_hash, action_index);
     let key = db_ops_key(tx_hash, action_index, index);
     if is_match(collect_db_op_keys(db_op), params) || action_keys.contains(&action_key) {
-        tables
+        let row = tables
             .create_row("DbOp", key)
             // pointers
             .set("transaction", tx_hash)
@@ -92,6 +93,7 @@ pub fn insert_db_op(params: &str, tables: &mut Tables, clock: &Clock, db_op: &Db
             .set("newData", new_data)
             .set("oldDataJson", old_data_json)
             .set("newDataJson", new_data_json);
+        insert_order_by(row, clock);
         return true;
     }
     return false;

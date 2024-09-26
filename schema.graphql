@@ -11,6 +11,10 @@ type Action @entity {
   isInput:                  Boolean!
   console:                  String!
 
+  # order by
+  timestamp:                BigInt! # seconds
+  block_number:             BigInt!
+
   # derived fields
   block:                    Block!
   transaction:              Transaction!
@@ -34,6 +38,10 @@ type DbOp @entity {
   oldDataJson:              String!
   oldData:                  String!
 
+  # order by
+  timestamp:                BigInt! # seconds
+  block_number:             BigInt!
+
   # derived fields
   block:                    Block!
   transaction:              Transaction!
@@ -47,6 +55,10 @@ type Transaction @entity {
   netUsage:               BigInt!
   scheduled:              Boolean!
 
+  # order by
+  timestamp:              BigInt! # seconds
+  block_number:           BigInt!
+
   # derived fields
   block:                  Block!
   actions:                [Action!]! @derivedFrom(field: "transaction")
@@ -57,18 +69,17 @@ type Authorization @entity {
   id:                 ID!
   actor:              String!
   permission:         String!
+
+  # derived fields
   action:             Action!
-  transaction:        Transaction!
 }
 
 type Block @entity {
   id:                 ID!
+  number:             BigInt!
   date:               String!
   month:              String!
   year:               String!
-  timestamp:          Timestamp!
-  number:             BigInt!
-  previous:           String!
-  producer:           String!
+  timestamp:          BigInt! # seconds
   transactions:       [Transaction!]! @derivedFrom(field: "block")
 }
