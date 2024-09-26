@@ -1,6 +1,6 @@
 specVersion: 1.2.0
 description: EOS Transactions, Decoded Actions & Database Operations
-repository: https://github.com/pinax-network/antelope-transactions-subgraph
+repository: https://github.com/pinax-network/subgraph-antelope-transactions
 schema:
   file: ../../schema.graphql
 indexerHints:
