@@ -2,7 +2,7 @@
 
 > Transactions, Decoded Actions & Database Operations
 >
-> WAX, EOS, Ultra, Telos...
+> WAX, EOS, Telos...
 > [`sf.antelope.type.v1.Block`](https://buf.build/pinax/firehose-antelope/docs/main:sf.antelope.type.v1)
 
 - [x] **Blocks**
