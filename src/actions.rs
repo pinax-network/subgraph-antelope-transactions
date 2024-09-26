@@ -5,6 +5,7 @@ use substreams_entity_change::tables::Tables;
 use crate::{
     index::{collect_action_keys, is_match},
     keys::action_key,
+    order_by::insert_order_by,
 };
 
 use super::authorizations::insert_authorization;
@@ -35,30 +36,29 @@ pub fn insert_action(params: &str, tables: &mut Tables, clock: &Clock, trace: &A
     // TABLE::Action
     if is_match(collect_action_keys(trace), params) {
         let key = action_key(tx_hash, index);
-        tables
+        let row = tables
             .create_row("Action", key.as_str())
             // pointers
             .set("transaction", tx_hash)
             .set("block", clock.id.as_str())
-
             // trace
             .set_bigint("index", &index.to_string())
             .set("receiver", receiver)
             .set("isNotify", is_notify)
             .set("isInput", is_input)
             .set("console", console)
-
             // receipt
             .set_bigint("globalSequence", &global_sequence.to_string())
-
             // action
             .set("account", account)
             .set("name", name)
             .set("jsonData", json_data)
             .set("rawData", raw_data);
+        insert_order_by(row, clock);
+
         // TABLE::authorizations
         for authorization in action.authorization.iter() {
-            insert_authorization(tables, trace, transaction, authorization);
+            insert_authorization(tables, clock, trace, transaction, authorization);
         }
         return Some(key);
     }

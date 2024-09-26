@@ -10,10 +10,10 @@ dataSources:
     name: eos_transactions
     network: eos
     source:
-      startBlock: 390796092
+      startBlock: 396143482
       package:
         moduleName: graph_out
-        file: ../../antelope-transactions-v0.4.0.spkg
+        file: ../../antelope-transactions-v0.5.0.spkg
     mapping:
       kind: substreams/graph-entities
       apiVersion: 0.0.5

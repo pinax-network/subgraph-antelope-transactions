@@ -4,7 +4,7 @@ use substreams::pb::substreams::Clock;
 use substreams_antelope::pb::TransactionTrace;
 use substreams_entity_change::tables::Tables;
 
-use crate::db_ops::collapse_db_ops;
+use crate::{db_ops::collapse_db_ops, order_by::insert_order_by};
 
 use super::{actions::insert_action, db_ops::insert_db_op};
 
@@ -47,7 +47,7 @@ pub fn insert_transaction(params: &str, tables: &mut Tables, clock: &Clock, tran
 
     // TABLE::Transaction
     if is_matched {
-        tables
+        let row = tables
             .create_row("Transaction", hash)
             // pointers
             .set("block", clock.id.as_str())
@@ -56,6 +56,7 @@ pub fn insert_transaction(params: &str, tables: &mut Tables, clock: &Clock, tran
             .set_bigint("elapsed", &elapsed.to_string())
             .set_bigint("netUsage", &net_usage.to_string())
             .set("scheduled", scheduled);
+        insert_order_by(row, clock);
 
         return true;
     }
