@@ -28,11 +28,13 @@
 | ----- | ----------- |
 | WAX   | [`4bAe7NA8b6J14ZfZr3TXfzzjjSoGECTFuqv7CwnK1zzg`](https://thegraph.com/explorer/subgraphs/4bAe7NA8b6J14ZfZr3TXfzzjjSoGECTFuqv7CwnK1zzg?view=Query&chain=arbitrum-one) |
 | EOS   | [`2RNdhL5p62dGN5UqKtsSEhYZiTJbFcuuhzk9qRJj8QeU`](https://thegraph.com/explorer/subgraphs/2RNdhL5p62dGN5UqKtsSEhYZiTJbFcuuhzk9qRJj8QeU?view=Query&chain=arbitrum-one) |
+| Kylin (Testnet)   | [`GpJpCvfozP3XWQRomagcU8t4tzmU5A788VNqKZuR2rCb`](https://thegraph.com/explorer/subgraphs/GpJpCvfozP3XWQRomagcU8t4tzmU5A788VNqKZuR2rCb?view=Query&chain=arbitrum-one) |
 
 | Chain | Subgraph ID (UInt256) |
 | ----- | ----------- |
 | WAX   | 24120480333211569189943591992759279596987552413186298385524741791011616341845 |
 | EOS   | 9544660660697512970420034067948120535763746642726326018982449681191462590993 |
+| Kylin | 106289533677304394555302740866367069211059282291100697030374629879842757021100 |
 
 ## GraphQL
 
